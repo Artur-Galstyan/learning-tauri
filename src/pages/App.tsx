@@ -2,8 +2,6 @@ import { useState } from "react";
 import { invoke } from "@tauri-apps/api/core";
 import { NavLink } from "react-router";
 
-import "./app.css";
-
 function App() {
   return (
     <main>
