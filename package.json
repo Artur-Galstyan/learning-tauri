@@ -19,6 +19,9 @@
     "@tauri-apps/plugin-shell": "^2.3.3",
     "@tauri-apps/plugin-websocket": "^2.4.1",
     "pocketbase": "^0.26.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router": "^7.10.1",
     "tailwindcss": "^4.1.17"
   },
   "devDependencies": {
@@ -26,6 +29,9 @@
     "@sveltejs/kit": "^2.9.0",
     "@sveltejs/vite-plugin-svelte": "^5.0.0",
     "@tauri-apps/cli": "^2",
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
     "daisyui": "^5.5.8",
     "svelte": "^5.0.0",
     "svelte-check": "^4.0.0",
