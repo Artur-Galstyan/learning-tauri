@@ -21,3 +21,8 @@ pub fn greet(name: &str) -> String {
 pub fn get_pb_creds(app_data: State<AppData>) -> String {
     format!("{}", app_data.admin_pass)
 }
+
+#[tauri::command]
+pub fn get_vault_creds(app_data: State<AppData>) -> String {
+    format!("{}", app_data.vault_pass)
+}

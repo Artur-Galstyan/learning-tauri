@@ -9,7 +9,7 @@ export default function Layout() {
   const navigation = useNavigation();
   const isNavigating = Boolean(navigation.location);
 
-  const [isDrawerOpen, setIsDrawerOpen] = useState(true);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   return (
     <div className="drawer lg:drawer-open">
