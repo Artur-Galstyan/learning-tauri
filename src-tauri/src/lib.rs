@@ -2,6 +2,7 @@ use tauri::Manager;
 use tauri_plugin_shell::ShellExt;
 use uuid::Uuid;
 pub mod commands;
+mod constants;
 
 pub struct AppData {
     admin_pass: String,
@@ -69,7 +70,8 @@ pub fn run() {
             commands::greet,
             commands::swear,
             commands::get_pb_creds,
-            commands::get_vault_creds
+            commands::get_vault_creds,
+            commands::auth_with_password
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
