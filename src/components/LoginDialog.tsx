@@ -1,16 +1,29 @@
 import { useState } from "react";
+import PocketBase from "pocketbase";
+import { invoke } from "@tauri-apps/api/core";
 import { LOGIN_DIALOG_ID } from "../lib/notifications";
 
 function LoginDialog() {
-  const [isValidPassword, setIsValidPassword] = useState(false);
+  const pb = new PocketBase("http://127.0.0.1:8090");
+
+  const [isValidPassword, setIsValidPassword] = useState(true);
+  const [userEmail, setUserEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   function validatePassword(event: React.ChangeEvent<HTMLInputElement>) {
     const password = event.target.value;
     if (!password) return false;
     const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
     const validity = regex.test(password);
-    setIsValidPassword(validity);
     return validity;
+  }
+
+  async function login() {
+    const res: string = await invoke("auth_with_password", {
+      userEmail: userEmail,
+      password: password,
+    });
+    console.log(res);
   }
 
   return (
@@ -24,6 +37,10 @@ function LoginDialog() {
               type="email"
               required
               placeholder="mail@site.com"
+              value={userEmail}
+              onChange={(e) => {
+                setUserEmail(e.target.value);
+              }}
             />
             <div className="validator-hint">Enter valid email address</div>
 
@@ -31,7 +48,12 @@ function LoginDialog() {
               type="password"
               className="input"
               required
-              onChange={validatePassword}
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                const passwordValid = validatePassword(e);
+                setIsValidPassword(passwordValid);
+              }}
               placeholder="Password"
               title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
             />
@@ -46,7 +68,7 @@ function LoginDialog() {
                 At least one uppercase letter
               </p>
             )}
-            <button className="btn" type="button">
+            <button onClick={login} className="btn" type="button">
               Login
             </button>
           </form>
