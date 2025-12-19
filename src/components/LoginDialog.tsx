@@ -1,11 +1,8 @@
 import { useState } from "react";
-import PocketBase from "pocketbase";
 import { invoke } from "@tauri-apps/api/core";
 import { LOGIN_DIALOG_ID } from "../lib/notifications";
 
 function LoginDialog() {
-  const pb = new PocketBase("http://127.0.0.1:8090");
-
   const [isValidPassword, setIsValidPassword] = useState(true);
   const [userEmail, setUserEmail] = useState("");
   const [password, setPassword] = useState("");

@@ -1,6 +1,7 @@
 use tauri::Manager;
 use tauri_plugin_shell::ShellExt;
 use uuid::Uuid;
+mod auth_utils;
 pub mod commands;
 mod constants;
 
@@ -10,28 +11,30 @@ pub struct AppData {
 }
 
 fn get_or_create_vault_password() -> String {
-    let entry =
-        keyring::Entry::new("regulaid", "vault-password").expect("Failed to create keyring entry");
+    return "dump".to_string();
+    // let entry =
+    //     keyring::Entry::new("regulaid", "vault-password").expect("Failed to create keyring entry");
 
-    match entry.get_password() {
-        Ok(password) => {
-            println!("Found existing password in keyring!");
-            password
-        }
-        Err(e) => {
-            println!("Keyring error: {:?}", e);
-            let vault_pass = Uuid::new_v4().to_string();
-            entry
-                .set_password(&vault_pass)
-                .expect("Failed to save password to keyring");
-            vault_pass
-        }
-    }
+    // match entry.get_password() {
+    //     Ok(password) => {
+    //         println!("Found existing password in keyring!");
+    //         password
+    //     }
+    //     Err(e) => {
+    //         println!("Keyring error: {:?}", e);
+    //         let vault_pass = Uuid::new_v4().to_string();
+    //         entry
+    //             .set_password(&vault_pass)
+    //             .expect("Failed to save password to keyring");
+    //         vault_pass
+    //     }
+    // }
 }
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
+        .plugin(tauri_plugin_deep_link::init())
         .plugin(tauri_plugin_shell::init())
         .plugin(tauri_plugin_websocket::init())
         .plugin(tauri_plugin_opener::init())

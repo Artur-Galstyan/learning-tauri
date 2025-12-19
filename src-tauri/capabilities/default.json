@@ -20,6 +20,7 @@
         }
       ]
     },
-    "stronghold:default"
+    "stronghold:default",
+    "deep-link:default"
   ]
 }
