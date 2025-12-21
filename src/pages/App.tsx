@@ -2,8 +2,13 @@ import { useState } from "react";
 import { invoke } from "@tauri-apps/api/core";
 import { NavLink } from "react-router";
 import { StrongholdSingleton } from "../lib/stronghold";
-import { LOGIN_DIALOG_ID, toggleDialog } from "../lib/notifications";
+import {
+  LOGIN_DIALOG_ID,
+  REGISTER_DIALOG_ID,
+  toggleDialog,
+} from "../lib/notifications";
 import LoginDialog from "../components/LoginDialog";
+import RegisterDialog from "../components/RegisterDialog";
 
 function App() {
   async function testStronghold() {
@@ -30,7 +35,16 @@ function App() {
       >
         Login
       </button>
+      <button
+        className="btn"
+        onClick={() => {
+          toggleDialog(REGISTER_DIALOG_ID);
+        }}
+      >
+        Register
+      </button>
       <LoginDialog />
+      <RegisterDialog />
     </main>
   );
 }

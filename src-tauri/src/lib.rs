@@ -74,7 +74,8 @@ pub fn run() {
             commands::swear,
             commands::get_pb_creds,
             commands::get_vault_creds,
-            commands::auth_with_password
+            commands::auth_with_password,
+            commands::register_with_password
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

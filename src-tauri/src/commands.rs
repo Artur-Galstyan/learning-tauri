@@ -1,4 +1,3 @@
-use serde::Deserialize;
 use serde::Serialize;
 use tauri::State;
 use tauri::{AppHandle, Emitter};
@@ -32,6 +31,7 @@ pub fn get_vault_creds(app_data: State<AppData>) -> String {
 }
 
 #[derive(Serialize)]
+#[serde(rename_all = "camelCase")]
 struct RegisterRequest {
     email: String,
     password: String,
