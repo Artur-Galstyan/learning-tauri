@@ -20,7 +20,7 @@ export const Toast = Swal.mixin({
   showConfirmButton: false,
   timer: 3000,
   timerProgressBar: true,
-  target: (document.querySelector("dialog[open]") as string | null) || "body",
+  target: (document.querySelector("dialog[open]") as HTMLElement) || "body",
   didOpen: (toast) => {
     toast.onmouseenter = Swal.stopTimer;
     toast.onmouseleave = Swal.resumeTimer;
